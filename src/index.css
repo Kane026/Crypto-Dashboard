@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@plugin './hero.ts';
+
+/* If index.css is in /src, use one '../' to get to node_modules */
+@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
