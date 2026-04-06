@@ -1,6 +1,7 @@
 // src/components/CryptoNavbar.jsx
 import React from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@heroui/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/react";
+import { Link } from "react-router-dom";
 
 export const AcmeLogo = () => (
   <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
@@ -13,7 +14,6 @@ export const AcmeLogo = () => (
   </svg>
 );
 
-// We use 'export default' so it's easy to import
 export default function CryptoNavbar() {
   return (
     <Navbar isBordered>
@@ -22,11 +22,11 @@ export default function CryptoNavbar() {
         <p className="font-bold text-inherit">CRYPTO</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">Dashboard</Link>
+        <NavbarItem>
+          <Link to="/" style={{ color: "inherit" }}>Dashboard</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="charts.jsx">Charts</Link>
+          <Link to="/charts" style={{ color: "inherit" }}>Charts</Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
