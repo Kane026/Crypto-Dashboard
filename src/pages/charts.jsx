@@ -1,4 +1,3 @@
-import React from "react";
 import MarketShareChart from "../components/MarketShareChart";
 import { useOutletContext } from "react-router-dom";
 

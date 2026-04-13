@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import CryptoNavbar from "./components/CryptoNavbar"; 
 
@@ -22,10 +22,18 @@ function App() {
 
   useEffect(() => { getPrice(); }, []);
 
+  const [favorites, setFavorite] = useState([]);
+
+    const toggleFavorite = (id) => {
+      setFavorites(prev =>
+        prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
+      );
+    };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <CryptoNavbar />
-      <Outlet context={{ prices, isLoading, getPrice }} />
+      <Outlet context={{ prices, isLoading, getPrice, favorites, toggleFavorite }} />
     </div>
   );
 }

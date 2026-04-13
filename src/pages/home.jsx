@@ -1,10 +1,9 @@
-import React from "react";
 import { Button, Input } from "@heroui/react"; 
 import CryptoTable from "../components/CryptoTable";
 import { useOutletContext, useSearchParams } from "react-router-dom";
 
 export default function Home() {
-  const { prices, isLoading, getPrice } = useOutletContext();
+  const { prices, isLoading, getPrice} = useOutletContext();
   
 
   const [searchParams, setSearchParams] = useSearchParams();

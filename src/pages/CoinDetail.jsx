@@ -1,10 +1,27 @@
-import React from "react";
 import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import { Button, Card, CardBody, User, Divider } from "@heroui/react";
+import { useState, useEffect } from "react";
 
 export default function CoinDetail() {
   const { id } = useParams(); 
   const navigate = useNavigate();
+  const [coinDetail, setCoinDetail] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  
+    async function getCoinDetail() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
+        const data = await response.json();
+        setCoinDetail(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  
+    useEffect(() => { getCoinDetail(); }, []);
   
 
   const { prices } = useOutletContext(); 

@@ -11,9 +11,16 @@ const columns = [
   
 ];
 
-export default function CryptoTable({ items, loading }) {
+export default function CryptoTable({ items, loading}) {
 
   const navigate = useNavigate();
+  const [favorites, setFavorites] = React.useState([]);
+
+  const toggleFavorite = (id) => {
+    setFavorites(prev =>
+      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
+    );
+  };
 
   const renderCell = React.useCallback((coin, columnKey) => {
     const cellValue = coin[columnKey];
@@ -38,10 +45,20 @@ export default function CryptoTable({ items, loading }) {
           {isPositive ? "▲" : "▼"} {Math.abs(cellValue).toFixed(2)}%
         </p>
       );
+       case "favorite":
+        return (
+          <span
+            onClick={(e) => { e.stopPropagation(); toggleFavorite(coin.id); }}
+            style={{ cursor: "pointer", fontSize: 20 }}
+          >
+            {favorites.includes(coin.id) ? "★" : "☆"}
+          </span>
+        );
+
       default:
         return cellValue;
     }
-  }, []);
+     }, [favorites]);
 
   return (
     <Table aria-label="Crypto market table" shadow="sm" selectionMode="single" onRowAction={(key) => navigate(`/coin/${key}`)}>

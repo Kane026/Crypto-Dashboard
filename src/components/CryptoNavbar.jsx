@@ -1,5 +1,3 @@
-// src/components/CryptoNavbar.jsx
-import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/react";
 import { Link } from "react-router-dom";
 
@@ -30,11 +28,6 @@ export default function CryptoNavbar() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
       </NavbarContent>
     </Navbar>
   );
