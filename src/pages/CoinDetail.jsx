@@ -24,13 +24,8 @@ export default function CoinDetail() {
     useEffect(() => { getCoinDetail(); }, []);
   
 
-  const { prices } = useOutletContext(); 
 
-
-  const coin = prices.find((item) => item.id === id);
-
-
-  if (!coin) {
+  if (!coinDetail) {
     return (
       <div className="p-8 text-center">
         <Button className="mt-4" onPress={() => navigate("/")}>Terug naar overzicht</Button>
@@ -51,9 +46,9 @@ export default function CoinDetail() {
       <Card className="p-4 shadow-md border-none bg-content1">
         <CardBody className="flex flex-col gap-4">
           <User
-            name={coin.name}
-            description={coin.symbol.toUpperCase()}
-            avatarProps={{ src: coin.image, size: "lg" }}
+            name={coinDetail.name}
+            description={coinDetail.symbol.toUpperCase()}
+            avatarProps={{ src: coinDetail.image.large, size: "lg" }}
             classNames={{ name: "text-2xl font-bold" }}
           />
           
@@ -62,19 +57,35 @@ export default function CoinDetail() {
           <div className="grid grid-cols-2 gap-8 py-4">
             <div>
               <p className="text-default-400 text-tiny uppercase font-semibold">Huidige Prijs</p>
-              <p className="text-2xl font-bold">${coin.current_price.toLocaleString()}</p>
+              <p className="text-2xl font-bold">${coinDetail.market_data.current_price.usd.toLocaleString()}</p>
             </div>
             <div>
               <p className="text-default-400 text-tiny uppercase font-semibold">Market Cap Rank</p>
-              <p className="text-2xl font-bold">#{coin.market_cap_rank}</p>
+              <p className="text-2xl font-bold">#{coinDetail.market_cap_rank}</p>
             </div>
             <div>
               <p className="text-default-400 text-tiny uppercase font-semibold">24u Hoog</p>
-              <p className="text-success text-xl font-bold">${coin.high_24h.toLocaleString()}</p>
+              <p className="text-success text-xl font-bold">${coinDetail.market_data.high_24h.usd.toLocaleString()}</p>
             </div>
             <div>
               <p className="text-default-400 text-tiny uppercase font-semibold">24u Laag</p>
-              <p className="text-danger text-xl font-bold">${coin.low_24h.toLocaleString()}</p>
+              <p className="text-danger text-xl font-bold">${coinDetail.market_data.low_24h.usd.toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-default-400 text-tiny uppercase font-semibold">All-Time High</p>
+              <p className="text-success text-xl font-bold">${coinDetail.market_data.ath.usd.toLocaleString()}</p>
+            </div>
+             <div>
+              <p className="text-default-400 text-tiny uppercase font-semibold">All-Time Low</p>
+              <p className="text-danger text-xl font-bold">${coinDetail.market_data.atl.usd.toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-default-400 text-tiny uppercase font-semibold">Genesis Date</p>
+              <p className="text-xl font-bold">{coinDetail.genesis_date}</p>
+            </div>
+            <div>
+              <p className="text-default-400 text-tiny uppercase font-semibold">Hashing Algorithm</p>
+              <p className="text-xl font-bold">{coinDetail.hashing_algorithm}</p>
             </div>
           </div>
         </CardBody>
